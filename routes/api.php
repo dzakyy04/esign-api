@@ -21,17 +21,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Check status user
-Route::get('/user/status/{nik}', [UserProxyController::class, 'checkStatusUser']);
-// Get profile
-Route::get('/user/profile/{nik}', [UserProxyController::class, 'getProfile']);
-// Get expired certificate
-Route::get('/entity/cert/expired', [UserProxyController::class, 'getExpiredCertificate']);
-// Get certificate chain
-Route::get('/user/certificate/chain/{id}', [UserProxyController::class, 'getCertificateChain']);
+// // Check status user
+// Route::get('/user/status/{nik}', [UserProxyController::class, 'checkStatusUser']);
+// // Get profile
+// Route::get('/user/profile/{nik}', [UserProxyController::class, 'getProfile']);
+// // Get expired certificate
+// Route::get('/entity/cert/expired', [UserProxyController::class, 'getExpiredCertificate']);
+// // Get certificate chain
+// Route::get('/user/certificate/chain/{id}', [UserProxyController::class, 'getCertificateChain']);
 
-// Sign PDF (Email + Passphrase  /  NIK + Passphrase)
-Route::post('/v2/sign/pdf', [V2SignProxyController::class, 'signPdf']);
+// // Sign PDF (Email + Passphrase  /  NIK + Passphrase)
+// Route::post('/v2/sign/pdf', [V2SignProxyController::class, 'signPdf']);
 
 // -----------------------------------------------------------------------
 // Generic wildcard proxy — forward semua request ke external API
