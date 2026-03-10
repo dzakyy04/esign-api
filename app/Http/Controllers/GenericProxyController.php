@@ -10,8 +10,6 @@ class GenericProxyController extends Controller
     public function proxy(Request $request, $path)
     {
         $baseUrl  = env('PROXY_BASE_URL');
-        $username = env('PROXY_USERNAME');
-        $password = env('PROXY_PASSWORD');
 
         // URL tujuan (endpoint yang sama)
         $url = "{$baseUrl}/api/{$path}";
@@ -19,8 +17,10 @@ class GenericProxyController extends Controller
         // Ambil Method dari original request (GET, POST, dll)
         $method = rtrim(strtoupper($request->method()));
 
-        // Inisiasi HTTP Client dengan Auth
-        $client = Http::withBasicAuth($username, $password);
+        // Inisiasi HTTP Client dengan header otorisasi yang dilempar dari request
+        $client = Http::withHeaders([
+            'Authorization' => $request->header('Authorization')
+        ]);
 
         // Ambil query param dari request asalnya (contoh ?nik=123)
         $query = $request->query();
