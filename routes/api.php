@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProxyController;
 use App\Http\Controllers\V2SignProxyController;
+use App\Http\Controllers\GenericProxyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,10 @@ Route::get('/user/certificate/chain/{id}', [UserProxyController::class, 'getCert
 
 // Sign PDF (Email + Passphrase  /  NIK + Passphrase)
 Route::post('/v2/sign/pdf', [V2SignProxyController::class, 'signPdf']);
+
+// -----------------------------------------------------------------------
+// Generic wildcard proxy — forward semua request ke external API
+// HARUS diletakkan PALING BAWAH agar tidak menimpa route di atas
+// -----------------------------------------------------------------------
+Route::any('/{path}', [GenericProxyController::class, 'proxy'])
+    ->where('path', '.*');
