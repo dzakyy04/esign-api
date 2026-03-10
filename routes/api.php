@@ -29,5 +29,5 @@ Route::get('/entity/cert/expired', [UserProxyController::class, 'getExpiredCerti
 // Get certificate chain
 Route::get('/user/certificate/chain/{id}', [UserProxyController::class, 'getCertificateChain']);
 
-// Sign PDF (Email + Passphrase)
-Route::post('/v2/sign/pdf', [V2SignProxyController::class, 'signPdfEmail']);
+// Sign PDF (Email + Passphrase  /  NIK + Passphrase)
+Route::post('/v2/sign/pdf', [V2SignProxyController::class, 'signPdf']);
