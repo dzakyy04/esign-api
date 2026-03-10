@@ -19,8 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Proxy endpoint: GET user status by NIK (via route param)
+// Check status user
 Route::get('/user/status/{nik}', [UserProxyController::class, 'getUserStatus']);
-
-// Proxy endpoint: POST check status user by NIK (via JSON body)
-Route::post('/v2/user/check/status', [UserProxyController::class, 'checkStatusByNik']);
+// Get profile
+Route::get('/user/profile/{nik}', [UserProxyController::class, 'getProfile']);
+// Get expired certificate
+Route::get('/entity/cert/expired', [UserProxyController::class, 'getExpiredCertificate']);
+// Get certificate chain
+Route::get('/user/certificate/chain/{id}', [UserProxyController::class, 'getCertificateChain']);
